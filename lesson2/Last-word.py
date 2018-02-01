@@ -8,6 +8,6 @@ new_text = ""
 for lastSymbol in str(text):
 	if lastSymbol == text[-1]:
 		continue
-	new_text = new_text + lastSymbol 
+	new_text = new_text + lastSymbol
 
 print (new_text)
