@@ -9,8 +9,8 @@ class Car:
 		self.condition = condition
 
 	@property 	
-	def info_car(self):
-		return('{} - {}'.format(self.price, self.condition))
+	def info_car(cls):
+		return('{} - {}'.format(cls.price, cls.condition))
 
 	def description(self):
 		print('{} - {}'.format(self.brand, self.info_car))
@@ -39,16 +39,18 @@ class Plant:
 		self.cars.append(car)
 		self.counter += 1
 		Plant.counter += 1
+		for car in self.cars:	
+			if len(self.cars) > 3:
+				print('The plant is full!')
+				return
 
 	def del_car(self, car):
 		self.cars.remove(car)
 		self.counter -= 1
 		Plant.counter -= 1
 
-	def assamble(self, condition):
-		for car in self.cars:
-			if car.condition == False:
-				car.condition = True
+	def assamble(self, car):
+		car.condition = True
 
 	def show_info_car(self):
 		for car in self.cars:	
@@ -78,6 +80,8 @@ plant1 = Plant()
 plant1.add_car(c)
 plant1.add_car(c1)
 plant1.assamble(c1)
+plant1.add_car(c2)
+plant1.assamble(c2)
 plant1.show_info_car()
 
 plant2 = Plant()
@@ -86,3 +90,4 @@ plant2.add_car(c1)
 plant2.add_car(c2)
 plant2.add_car(c3)
 plant2.show_info_car()
+
