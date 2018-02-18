@@ -1,6 +1,8 @@
-# Write a program in the OOP style to emulate the work of the plant. The program will have two classes: for machines and for the plant. 
-# Machines have: name, price and information or collected. The plant keeps a list of machines. The plant keeps a list of machines. 
-# The plant provides information on how much cars are now in it and how many of them are collected. Also display information on all machines.
+# To the program from the previous lesson:
+# - checking for the correctness of data
+# - if the price is entered less than 0 to issue an error
+# - collecting a car is now a process. Іf it is successful, then make the car assembled, if not make a mistake.
+#   This process may not be successful if the machine is already assembled. Use the context manager for that.
 
 class PriceException(Exception):
 	pass
