@@ -1,6 +1,7 @@
-# Write a program in the OOP style to emulate the work of the plant. The program will have two classes: for machines and for the plant. 
-# Machines have: name, price and information or collected. The plant keeps a list of machines. The plant keeps a list of machines. 
-# The plant provides information on how much cars are now in it and how many of them are collected. Also display information on all machines.
+# Use the program from the previous lesson as a basis. Add the following features:
+# - add different classes of machines. The name does not need to be transmitted, it is given in the class itself.
+# - add the maximum number of machines at the factory.
+# - add function "assamble", which will accept the car as a parameter and collect it.
 
 class Car:
 	
