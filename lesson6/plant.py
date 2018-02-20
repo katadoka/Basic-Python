@@ -15,14 +15,14 @@ class Car:
 
 	@property 	
 	def info_car(self):
-		return'{} - {}'.format(self.price, self.condition)
+		return'{}$ - {}'.format(self.price, self.condition)
 
 	def description(self):
 		print('{} - {}'.format(self.brand, self.info_car))
 
 	@property
 	def price(self):
-		return self._price
+		return self._price 
 
 	@price.setter
 	def price(self, amount):
@@ -43,8 +43,13 @@ class Car:
 			raise Exception('Condition should be True or false!!!')
 
 	def __enter__(self):
+		# if self.condition:
+		# 	raise Exception('This car is collected!!')
+
+		# self.condition = not self.condition
+		# return self
 		if self.condition == False:
-			self.condition == True
+			self.condition = True
 		else:
 			raise Exception('This car is collected!!')
 		return self
@@ -55,17 +60,17 @@ class Car:
 
 class BMV(Car):
 	brand = 'BMV'
-	_price = '15000$'
+	_price = 15000
 
 
 class Mersedes(Car):
 	brand = 'Mersedes'
-	_price = '12000$'
+	_price = 12000
 
 
 class Lanos(Car):
 	brand = 'Lanos'
-	_price = '3000$'
+	_price = 3000
 
 
 class Plant:
