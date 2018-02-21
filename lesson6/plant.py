@@ -1,105 +1,108 @@
 # To the program from the previous lesson:
 # - checking for the correctness of data
 # - if the price is entered less than 0 to issue an error
-# - collecting a car is now a process. Іf it is successful, then make the car assembled, if not make a mistake.
-#   This process may not be successful if the machine is already assembled. Use the context manager for that.
+# - collecting a car is now a process. Іf it is successful,
+# then make the car assembled, if not make a mistake.
+# This process may not be successful if the machine is already assembled.
+# Use the context manager for that.
+
 
 class PriceException(Exception):
-	pass
+    pass
 
 
 class Car:
-	
-	def __init__(self, condition):
-		self.condition = condition
 
-	@property 	
-	def info_car(self):
-		return'{}$ - {}'.format(self.price, self.condition)
+    def __init__(self, condition):
+        self.condition = condition
 
-	def description(self):
-		print('{} - {}'.format(self.brand, self.info_car))
+    @property
+    def info_car(self):
+        return'{}$ - {}'.format(self.price, self.condition)
 
-	@property
-	def price(self):
-		return self._price 
+    def description(self):
+        print('{} - {}'.format(self.brand, self.info_car))
 
-	@price.setter
-	def price(self, amount):
-		if amount > 15000:
-			raise PriceException('Price should be < 15000$')
-		elif amount < 0:
-			raise PriceException('Price should be > 0')
-		else:
-			self._price = amount
+    @property
+    def price(self):
+        return self._price
 
-	@property
-	def conditions(self):
-		return self.condition 
+    @price.setter
+    def price(self, amount):
+        if amount > 15000:
+            raise PriceException('Price should be < 15000$')
+        elif amount < 0:
+            raise PriceException('Price should be > 0')
+        else:
+            self._price = amount
 
-	@conditions.setter
-	def conditions(self, condition):
-		if not isinstance(condition, bool):  # перевірка чи являється 1 елемент до другого і можна використовувати дочірні класи
-			raise Exception('Condition should be True or false!!!')
+    @property
+    def conditions(self):
+        return self.condition
 
-	def __enter__(self):
-		# if self.condition:
-		# 	raise Exception('This car is collected!!')
+    @conditions.setter
+    def conditions(self, condition):
+        if not isinstance(condition, bool):  # перевірка чи являється 1 елемент до другого і можна використовувати дочірні класи
+            raise Exception('Condition should be True or false!!!')
 
-		# self.condition = not self.condition
-		# return self
-		if self.condition == False:
-			self.condition = True
-		else:
-			raise Exception('This car is collected!!')
-		return self
+    def __enter__(self):
+        # if self.condition:
+        # 	raise Exception('This car is collected!!')
+        # self.condition = not self.condition
+        # return self
+        if self.condition == False:
+            self.condition = True
+        else:
+            raise Exception('This car is collected!!')
+        return self
 
-	def __exit__(self, *args):
-		return
+    def __exit__(self, *args):
+        return
 
 
 class BMV(Car):
-	brand = 'BMV'
-	_price = 15000
+    brand = 'BMV'
+    _price = 15000
 
 
 class Mersedes(Car):
-	brand = 'Mersedes'
-	_price = 12000
+    brand = 'Mersedes'
+    _price = 12000
 
 
 class Lanos(Car):
-	brand = 'Lanos'
-	_price = 3000
+    brand = 'Lanos'
+    _price = 3000
 
 
 class Plant:
-	counter = 0 
-	def __init__(self):
-		self.cars = []
+    counter = 0
 
-	def add_car(self, car):
-		if len(self.cars) == 3:
-				print('The plant is full!')
-		else:
-			self.cars.append(car)
-			Plant.counter += 1
+    def __init__(self):
+        self.cars = []
 
-	def del_car(self, car):
-		self.cars.remove(car)
-		Plant.counter -= 1
+    def add_car(self, car):
+        if len(self.cars) == 3:
+                print('The plant is full!')
+        else:
+            self.cars.append(car)
+            Plant.counter += 1
 
-	def assamble(self, car):
-		car.condition = True
+    def del_car(self, car):
+        self.cars.remove(car)
+        Plant.counter -= 1
 
-	def show_info_car(self):
-		dont_work = 0
-		for car in self.cars:	
-			if car.condition != True:
-				dont_work += 1
-			car.description()
-		print('Total cars: {}'.format(Plant.counter))
-		print('On plant: {}/{}'.format(dont_work, len(self.cars)))	
+    def assamble(self, car):
+        car.condition = True
+
+    def show_info_car(self):
+        dont_work = 0
+        for car in self.cars:
+            if car.condition != True:
+                dont_work += 1
+            car.description()
+        print('Total cars: {}'.format(Plant.counter))
+        print('On plant: {}/{}'.format(dont_work, len(self.cars)))
 
 
 c = BMV(True)
@@ -108,10 +111,10 @@ c2 = Lanos(False)
 c3 = BMV(True)
 
 with c1:
-	print('Car is collected.')
+    print('Car is collected.')
 
 with c:
-	print('Car is collected.')
+    print('Car is collected.')
 
 # c1.conditions = True
 # c1.description()
