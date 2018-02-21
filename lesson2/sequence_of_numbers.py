@@ -2,7 +2,7 @@
 
 number = int(input('Enter number: '))
 
-n = 0 
+n = 0
 while n < number:
-	n = n + 1
-	print(n)
+    n = n + 1
+    print(n)
