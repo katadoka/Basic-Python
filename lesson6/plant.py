@@ -46,14 +46,9 @@ class Car:
             raise Exception('Condition should be True or false!!!')
 
     def __enter__(self):
-        # if self.condition:
-        # 	raise Exception('This car is collected!!')
-        # self.condition = not self.condition
-        # return self
-        if self.condition == False:
-            self.condition = True
-        else:
+        if self.condition:
             raise Exception('This car is collected!!')
+        self.condition = not self.condition
         return self
 
     def __exit__(self, *args):
@@ -98,7 +93,7 @@ class Plant:
     def show_info_car(self):
         dont_work = 0
         for car in self.cars:
-            if car.condition != True:
+            if car.condition:
                 dont_work += 1
             car.description()
         print('Total cars: {}'.format(Plant.counter))
