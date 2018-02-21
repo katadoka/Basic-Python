@@ -58,7 +58,7 @@ class Plant:
     def show_info_car(self):
         dont_work = 0
         for car in self.cars:
-            if car.condition != True:
+            if car.condition:
                 dont_work += 1
             car.description()
         print('Total cars: {}'.format(Plant.counter))
