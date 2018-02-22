@@ -42,7 +42,7 @@ class Car:
 
     @conditions.setter
     def conditions(self, condition):
-        if not isinstance(condition, bool):  # перевірка чи являється 1 елемент до другого і можна використовувати дочірні класи
+        if not isinstance(condition, bool):  # перевірка  1 елемент до другого
             raise Exception('Condition should be True or false!!!')
 
     def __enter__(self):
