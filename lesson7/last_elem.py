@@ -1,9 +1,6 @@
-# Write in the last element of the matrix line the sum of all the previous line items using List comprehension 
+# # Write in the last element of the matrix line the sum of
+# all the previous line items using List comprehension
 # and functional programming.
-from functools import reduce
 
-a = ([0,1,2,4,3,2])
-
-a1 = a[:-1]
-a1.append(reduce(lambda x, y: x + y,a))
-print(a1)
+a = [[1, 2, 3, 4], [2, 3, 5, 6, 7]]
+print([row[:-1] + [sum(row)] for row in a])
