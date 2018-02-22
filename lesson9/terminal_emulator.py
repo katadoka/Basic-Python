@@ -9,7 +9,7 @@ a = input('>>> ')
 if a == 'll':
     print(os.listdir('.'))
 
-elif a == ('cd'):
+elif a == 'cd':
     path = input('Enter the path >>> ')
     os.chdir(path)
     print(os.listdir('.'))
@@ -19,7 +19,7 @@ elif a == 'touch':
     action = input('Enter the action file >>> ')
     open(file, action)
 
-elif a == ('mkdir'):
+elif a == 'mkdir':
     folder = input('Enter the name folder >>> ')
     os.mkdir(folder)
 
