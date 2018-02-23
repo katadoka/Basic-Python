@@ -5,30 +5,29 @@
 import os
 
 
-def terminal_emulator(*a):
-    for i in a:
-        if i[0] == 'll':
-            print(os.listdir('.'))
+def terminal_emulator(i):
+    if i[0] == 'll':
+        print(os.listdir('.'))
 
-        elif i[0] == 'cd':
-            os.chdir(i[1])
+    elif i[0] == 'cd':
+        os.chdir(i[1])
 
-        elif i[0] == 'touch':
-            with open(i[1], 'w') as h:
-                pass
+    elif i[0] == 'touch':
+        with open(i[1], 'w') as h:
+            pass
 
-        elif i[0] == 'mkdir':
-            os.mkdir(i[1])
+    elif i[0] == 'mkdir':
+        os.mkdir(i[1])
 
-        elif i[0] == 'cat':
-            with open(i[1], 'r') as g:
-                print(g.read())
+    elif i[0] == 'cat':
+        with open(i[1], 'r') as g:
+            print(g.read())
 
-        elif i[0] == 'exit':
-            exit()
+    elif i[0] == 'exit':
+        exit()
 
     return terminal_emulator(input('>>> ').split())
 
-a = input('>>> ').split()
+i = input('>>> ').split()
 
-terminal_emulator(a)
+terminal_emulator(i)
