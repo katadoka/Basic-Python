@@ -4,27 +4,31 @@
 
 import os
 
-a = input('>>> ')
 
-if a == 'll':
-    print(os.listdir('.'))
+def terminal_emulator(*a):
+    for i in a:
+        if i[0] == 'll':
+            print(os.listdir('.'))
 
-elif a == 'cd':
-    path = input('Enter the path >>> ')
-    os.chdir(path)
-    print(os.listdir('.'))
+        elif i[0] == 'cd':
+            os.chdir(i[1])
 
-elif a == 'touch':
-    file = input('Enter the name file >>> ')
-    action = input('Enter the action file >>> ')
-    open(file, action)
+        elif i[0] == 'touch':
+            with open(i[1], 'w') as h:
+                pass
 
-elif a == 'mkdir':
-    folder = input('Enter the name folder >>> ')
-    os.mkdir(folder)
+        elif i[0] == 'mkdir':
+            os.mkdir(i[1])
 
-elif a == 'cat':
-    file = input('Enter the name file >>> ')
-    read_file = open(file)
-    text = read_file.read()
-    print(text)
+        elif i[0] == 'cat':
+            with open(i[1], 'r') as g:
+                print(g.read())
+
+        elif i[0] == 'exit':
+            exit()
+
+    return terminal_emulator(input('>>> ').split())
+
+a = input('>>> ').split()
+
+terminal_emulator(a)
