@@ -14,7 +14,7 @@ import numpy.random as rand
 @click.command()
 @click.option('--number', '-n', default=1)
 def click_massive(number):
-    massive = np.random.randint(0, number, number)
+    massive = np.random.randint(0, number, 100)
     print(massive)
     print(np.sort(massive)[::-1])
     print(np.sum(massive))
