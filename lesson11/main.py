@@ -1,42 +1,33 @@
 # Parser for https://docs.python.org/3/
-
+from collections import namedtuple
 
 import requests
 from bs4 import BeautifulSoup
 
 
-def search_links(links):
-    counter = 0
-    for link in links:
-        counter += 1
-        print(f'{counter}. {link.text}: {BASE_URL}{link.get("href")}')
-
-def link_use(links):
-    counter = 0
-    for link in links:
-        counter += 1
-        if link_number == counter:
-            b = link.get('href')
-            response_link = requests.get(BASE_URL + b)
-            soup_link = BeautifulSoup(response_link.content, 'html.parser')
-            counter_link = 0
-            for link in soup_link.find_all('a'):
-                counter_link += 1
-                print(f'{counter_link}. {link.text}: {BASE_URL}{link.get("href")}')
-
-
 BASE_URL = 'https://docs.python.org/3/'
-response = requests.get(BASE_URL)
+UrlObject = namedtuple('UrlObject', ['name', 'url'])
 
-soup = BeautifulSoup(response.content, 'html.parser')
 
-links = []
-counter = 0
-for table in soup.find_all('table'):
-    links += table.find_all('a')
+def print_links(links):
+    for c, link in enumerate(links, 1):
+        print(f'{c}. {link.name}: {link.url}')
 
-search_links(links)
 
+def search_links(url=BASE_URL, search_key='table a'):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    links = [UrlObject(a.text, BASE_URL + a.get('href')) for a in soup.select(search_key)]
+    return links
+
+
+def link_use(links, link_number):
+    link = links[link_number-1]
+    page_links = search_links(url=link.url, search_key='a')
+    print_links(page_links)
+
+
+links = search_links()
+print_links(links)
 link_number = int(input("Enter the link number: "))
-
-link_use(links)
+link_use(links, link_number)
